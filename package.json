@@ -1,0 +1,14 @@
+{
+  "name": "bonsai",
+  "version": "0.2.0",
+  "description": "Coding-agent skill — minimal-code bias (lazy-senior), grounded + zero-trace.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "coverage": "node --test --experimental-test-coverage tests/*.test.mjs",
+    "smoke": "node scripts/benchmark.mjs",
+    "bench:dry": "node scripts/run.mjs --dry --cases C1,C2 --arms off"
+  },
+  "devDependencies": { "eslint": "^9.0.0" }
+}
