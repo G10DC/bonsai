@@ -15,11 +15,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: '${{ matrix.node }}' }
-      # zero-dep: tests + coverage + harness smoke run on Node built-ins alone
+        with:
+          node-version: '${{ matrix.node }}'
+          cache: 'npm'
+      - run: npm ci || npm install
       - run: node --test tests/*.test.mjs
       - run: node --test --experimental-test-coverage tests/*.test.mjs
-      - run: node scripts/benchmark.mjs --json >/dev/null   # harness structure smoke
+      - run: node scripts/benchmark.mjs --json >/dev/null
 
   lint:
     name: lint
@@ -27,6 +29,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: '22' }
-      - run: npm install -g eslint@9
-      - run: eslint scripts tests
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci || npm install
+      - run: npx eslint .
