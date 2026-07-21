@@ -19,5 +19,5 @@ The skill ecosystem has no mature integrity model (no signing / checksums by def
 ## Recommended install
 ```bash
 $EDITOR SKILL.md     # review first
-cp -r . ~/.claude/skills/bonsai
+cp -r . ~/.gemini/config/skills/bonsai
 ```

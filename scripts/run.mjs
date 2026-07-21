@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// bonsai Phase-0 real runner (T2). Spawns headless `claude -p` per (case×arm) on a fixture repo,
+// bonsai Phase-0 real runner (T2). Spawns headless `agent -p` per (case×arm) on a fixture repo,
 // scores `git diff --numstat`, runs a per-case correctness + safety check, deps diff, writes
 // .bench/results.json + a table. Real execution of the kill-or-proceed gate (T1).
 // Usage: node run.mjs [--cases C1,C2] [--arms off,bonsai] [--n 1] [--dry]
@@ -52,10 +52,10 @@ function runArm(c, arm) {
   const depsBefore = countDeps(work);
 
   if (!dry) {
-    const r = spawnSync('claude', ['-p', '--append-system-prompt', ARM_PROMPT[arm], '--dangerously-skip-permissions', c.task],
+    const r = spawnSync('agent', ['-p', '--append-system-prompt', ARM_PROMPT[arm], '--dangerously-skip-permissions', c.task],
       { cwd: work, encoding: 'utf8', timeout: 240000 });
     if (r.error || r.status !== 0) {
-      return { case: c.id, arm, error: String((r.stderr || r.stdout || r.error || 'claude failed')).slice(0, 400) };
+      return { case: c.id, arm, error: String((r.stderr || r.stdout || r.error || 'agent failed')).slice(0, 400) };
     }
   }
   git(work, ['add', '-A']);

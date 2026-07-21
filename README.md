@@ -21,7 +21,7 @@ Reinforced by: **grounding** (`scripts/ground.mjs`), **never cut** (validation /
 
 ## Install
 ```bash
-cp -r . ~/.claude/skills/bonsai
+cp -r . ~/.gemini/config/skills/bonsai
 ```
 Prefer a pinned/provenanced install — see `TRUST.md`. Invoke it deliberately on a coding turn where over-build is a risk (it is opt-in, not always-on).
 
